@@ -20,6 +20,7 @@
         android:imeActionId="@+id/action_search_ime"
         android:imeActionLabel="@string/action_search"
         android:imeOptions="actionUnspecified"
+        android:inputType="textCapWords"
         android:maxLines="1"
         android:singleLine="true" />
 

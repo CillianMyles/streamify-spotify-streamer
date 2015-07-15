@@ -6,91 +6,91 @@
         jumboMode="false"
         revision="22.0.1"
         sha1="959c454243581fdf730abfd4f4745441724bcf2c">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/okhttp-2.2.0-78309ca830e4e35510cfd6fffe936b617e7259d0.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/okhttp-2.2.0-78309ca830e4e35510cfd6fffe936b617e7259d0.jar" />
+    </item>
+    <item
+        jar="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/exploded-aar/spotify-web-api-android-0.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1720452d45499b40f7b0567006c5386260a3cd64">
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/classes-5470bf0e5159be6fb92a27726171481da789f061.jar" />
+    </item>
+    <item
+        jar="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-auth/1.0.0-beta10/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a2736a2c8e3bd1d508baa11851e9a77f62646d08">
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/classes-e7c01226d3292ef16ebe0a4f226b494a60d237ab.jar" />
     </item>
     <item
         jar="/Users/MrMac/Documents/Dev/Apps/AndroidDev/AndroidDeveloperTools/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-ee52ca4e72ba4cfcb919cef6c4547afa7968b3b3.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-ee52ca4e72ba4cfcb919cef6c4547afa7968b3b3.jar" />
     </item>
     <item
         jar="/Users/MrMac/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="a681c044244d9fc375198588297a39ba78028423">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/retrofit-1.9.0-05c15dcd74b62f3165634191627fdea5667b20d6.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/retrofit-1.9.0-05c15dcd74b62f3165634191627fdea5667b20d6.jar" />
     </item>
     <item
-        jar="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-d3e244b061dad3dab60e8dcc6aceed455e84d91d.jar" />
-    </item>
-    <item
-        jar="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-player/1.0.0-beta10/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="303cdfb0e82e35c8ee189313e3d0ccc144accdc4">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/classes-d60cb5bccb2d3afadfacf5542cf78f2d4914b112.jar" />
-    </item>
-    <item
-        jar="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jar="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/classes-a2dca245f6119200d11311aac51a5aa6130c5493.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/classes-67b787def577d6cb9c20a687e8a045510d7f2888.jar" />
     </item>
     <item
-        jar="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jar="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/classes-26d80522758a056479bd2445c5e6b67a1a34832a.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/classes-880021f64a38ed14f5c7370dcc4b703079fe1da8.jar" />
     </item>
     <item
-        jar="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/exploded-aar/spotify-web-api-android-0.1.0/jars/classes.jar"
+        jar="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-player/1.0.0-beta10/jars/classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="1720452d45499b40f7b0567006c5386260a3cd64">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/classes-adbb5083a192b2aba196d11e835fe81c0c62f8b0.jar" />
+        sha1="303cdfb0e82e35c8ee189313e3d0ccc144accdc4">
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/classes-7509908fc5ad9dd03fede6d46425faa70fcb8eaf.jar" />
+    </item>
+    <item
+        jar="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-player/1.0.0-beta10/jars/libs/jnihelpers-1.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="863562b367d763d45f9bb44f58a5029007f79555">
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/jnihelpers-1.0-4cd58b79d360576b5608f5ee8ad919b15eeb6278.jar" />
     </item>
     <item
         jar="/Users/MrMac/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.2.0/c0b52915a48fa91b1b94a28d4a2997bac5f524df/okio-1.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="c0b52915a48fa91b1b94a28d4a2997bac5f524df">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/okio-1.2.0-ea7cef39220ce406cb038f2b3a919d6cd94a85ea.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/okio-1.2.0-ea7cef39220ce406cb038f2b3a919d6cd94a85ea.jar" />
     </item>
     <item
         jar="/Users/MrMac/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-b7bfe0ceebf63d7d483bb6ecbc36f58ce1ba9cc9.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/picasso-2.5.2-b7bfe0ceebf63d7d483bb6ecbc36f58ce1ba9cc9.jar" />
     </item>
     <item
-        jar="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-player/1.0.0-beta10/jars/libs/jnihelpers-1.0.jar"
+        jar="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="863562b367d763d45f9bb44f58a5029007f79555">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/jnihelpers-1.0-d5481a630ffa8c0faa6e7974553682275f75c4be.jar" />
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-2e5c31ac77c50d870228258741e13e15d33f54f6.jar" />
     </item>
     <item
         jar="/Users/MrMac/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/gson-2.3.1-77ea5bbebaf4cb544d60d67d87b21b9f9b8ae80c.jar" />
-    </item>
-    <item
-        jar="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/exploded-aar/com.spotify.sdk/spotify-auth/1.0.0-beta10/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a2736a2c8e3bd1d508baa11851e9a77f62646d08">
-        <dex dex="/Users/MrMac/Documents/Dev/Workspaces/StudioWorkspaces/Streamify/app/build/intermediates/pre-dexed/debug/classes-7daf813b108d89314f8a44ddcde6801f145092bf.jar" />
+        <dex dex="/Users/MrMac/Documents/Dev/GitRepos/AndroidProjects/streamify-spotify-streamer/app/build/intermediates/pre-dexed/debug/gson-2.3.1-77ea5bbebaf4cb544d60d67d87b21b9f9b8ae80c.jar" />
     </item>
 
 </items>
