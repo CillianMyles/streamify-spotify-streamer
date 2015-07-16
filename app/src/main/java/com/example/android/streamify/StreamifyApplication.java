@@ -32,6 +32,7 @@ public class StreamifyApplication extends Application {
         instance = this;
 
         spotifyApi = new SpotifyApi();
+        //spotifyApi.setAccessToken("");
         spotifyService = spotifyApi.getService();
 
         super.onCreate();

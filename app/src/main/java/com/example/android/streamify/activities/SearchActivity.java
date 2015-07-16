@@ -1,6 +1,7 @@
 package com.example.android.streamify.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -57,6 +59,17 @@ public class SearchActivity extends AppCompatActivity {
 
     private void initialiseSearchResultsList() {
         searchResults = (ListView) findViewById(R.id.search_list_artist_details);
+        mSearchAdapter = new SearchAdapter(SearchActivity.this, new ArrayList<Artist>());
+        searchResults.setAdapter(mSearchAdapter);
+        searchResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Artist artist = (Artist) mSearchAdapter.getItem(position);
+                Intent intent = new Intent(SearchActivity.this, TracksActivity.class);
+                intent.putExtra(Intent.EXTRA_TEXT, artist.id);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initialiseSearchTextField() {
@@ -82,24 +95,18 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setUpSpotify() {
         spotify = StreamifyApplication.getSpotifyService();
-//        spotifyApi.setAccessToken("");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -115,12 +122,10 @@ public class SearchActivity extends AppCompatActivity {
         private final String TAG = SearchTask.class.getSimpleName();
 
         private ArrayList<Artist> list;
-        boolean hasResults;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            hasResults = false;
             list = new ArrayList<>();
         }
 
@@ -132,13 +137,14 @@ public class SearchActivity extends AppCompatActivity {
                 spotify.searchArtists(params[0], new Callback<ArtistsPager>() {
                     @Override
                     public void success(ArtistsPager artistsPager, Response response) {
+                        Log.d(TAG, "Response : " + response.getBody());
                         for (int i = 0; i < artistsPager.artists.items.size(); i++) {
                             list.add(artistsPager.artists.items.get(i));
                             Log.v(TAG, "ARTIST:" + artistsPager.artists.items.get(i).name);
                         }
-                        mSearchAdapter = new SearchAdapter(SearchActivity.this, list);
-                        searchResults.setAdapter(mSearchAdapter);
-                        Log.v(TAG, "Request was successful");
+                        mSearchAdapter.clear();
+                        mSearchAdapter.addAll(list);
+                        Log.v(TAG, "Search artists request successful");
                     }
 
                     @Override
@@ -157,8 +163,8 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final ArrayList<Artist> artists) {
             if (artists == null) {
-                mSearchAdapter = new SearchAdapter(SearchActivity.this, new ArrayList<Artist>());
-                searchResults.setAdapter(mSearchAdapter);
+                mSearchAdapter.clear();
+                mSearchAdapter.addAll(new ArrayList<>());
                 Log.v(TAG, "Searched for nothing, no artists in response.");
             }
         }

@@ -1,9 +1,6 @@
 package com.example.android.streamify.Utilities;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.streamify.R;
+import com.example.android.streamify.StreamifyApplication;
+import com.squareup.picasso.Picasso;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import kaaes.spotify.webapi.android.models.Track;
@@ -45,27 +39,44 @@ public class TracksAdapter extends ArrayAdapter<Track> {
                 .findViewById(R.id.tracks_artist_info_tv_song_name);
 
         Track track = getItem(position);
-        artistImage.setImageBitmap(getImageBitmap(track.album.images.get(0).url));
+
+        if (track.album.images.size() > 0) {
+
+            String firstChoicePicUrl = "";
+            String secondChoicePicUrl = "";
+            String lastChoicePicUrl = "";
+
+            for (int i = 0; i < track.album.images.size(); i++) {
+
+                String currentUrl = track.album.images.get(i).url;
+
+                if (track.album.images.get(i).height >= 640) {
+                    firstChoicePicUrl = currentUrl;
+                } else if (track.album.images.get(i).height >= 300) {
+                    secondChoicePicUrl = currentUrl;
+                } else {
+                    lastChoicePicUrl = currentUrl;
+                }
+            }
+
+            String urlToUse = "";
+
+            if (!firstChoicePicUrl.equals("")) {
+                urlToUse = firstChoicePicUrl;
+            } else if (!secondChoicePicUrl.equals("")) {
+                urlToUse = secondChoicePicUrl;
+            } else if (!lastChoicePicUrl.equals("")) {
+                urlToUse = lastChoicePicUrl;
+            }
+
+            Picasso.with(StreamifyApplication.getContext())
+                    .load(urlToUse)
+                    .into(artistImage);
+        }
+
         albumName.setText(track.album.name);
         songName.setText(track.name);
 
         return trackView;
-    }
-
-    private Bitmap getImageBitmap(String url) {
-        Bitmap bm = null;
-        try {
-            URL aURL = new URL(url);
-            URLConnection conn = aURL.openConnection();
-            conn.connect();
-            InputStream is = conn.getInputStream();
-            BufferedInputStream bis = new BufferedInputStream(is);
-            bm = BitmapFactory.decodeStream(bis);
-            bis.close();
-            is.close();
-        } catch (IOException e) {
-            Log.e(TAG, "Error getting album cover bitmap", e);
-        }
-        return bm;
     }
 }
