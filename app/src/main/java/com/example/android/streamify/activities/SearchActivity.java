@@ -1,4 +1,4 @@
-package com.example.android.streamify;
+package com.example.android.streamify.activities;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -16,11 +16,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android.streamify.R;
+import com.example.android.streamify.StreamifyApplication;
 import com.example.android.streamify.Utilities.SearchAdapter;
 
 import java.util.ArrayList;
 
-import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.ArtistsPager;
@@ -36,8 +37,9 @@ public class SearchActivity extends AppCompatActivity {
     private EditText searchText;
     private ListView searchResults;
 
-    SpotifyApi spotifyApi;
-    SpotifyService spotify;
+    private ArrayAdapter mSearchAdapter;
+
+    private SpotifyService spotify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,16 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initialiseUI() {
-        searchText = (EditText) findViewById(R.id.search_et_artist_name);
-        searchResults = (ListView) findViewById(R.id.search_list_artist_details);
+        initialiseSearchResultsList();
+        initialiseSearchTextField();
+    }
 
+    private void initialiseSearchResultsList() {
+        searchResults = (ListView) findViewById(R.id.search_list_artist_details);
+    }
+
+    private void initialiseSearchTextField() {
+        searchText = (EditText) findViewById(R.id.search_et_artist_name);
         searchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -72,8 +81,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void setUpSpotify() {
-        spotifyApi = new SpotifyApi();
-        spotify = spotifyApi.getService();
+        spotify = StreamifyApplication.getSpotifyService();
 //        spotifyApi.setAccessToken("");
     }
 
@@ -100,54 +108,63 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     /**
-     * Represents an asynchronous login task used to authenticate mUser.
+     * Represents an asynchronous search task used to find artists.
      */
-    public class SearchTask extends AsyncTask<String, Void, Boolean> {
+    public class SearchTask extends AsyncTask<String, Void, ArrayList<Artist>> {
+
+        private final String TAG = SearchTask.class.getSimpleName();
+
+        private ArrayList<Artist> list;
+        boolean hasResults;
 
         @Override
-        protected Boolean doInBackground(String... params) {
-
-            boolean hasResults = false;
-
-            spotify.searchArtists(params[0], new Callback<ArtistsPager>() {
-                @Override
-                public void success(ArtistsPager artistsPager, Response response) {
-                    ArrayList<Artist> list = new ArrayList<>();
-                    for (int i = 0; i < artistsPager.artists.items.size(); i++) {
-                        list.add(artistsPager.artists.items.get(i));
-                        Log.v(TAG, "ARTIST:" + artistsPager.artists.items.get(i).name);
-                    }
-                    ArrayAdapter adapter = new SearchAdapter(SearchActivity.this, list);
-                    searchResults.setAdapter(adapter);
-                    Log.v(TAG, "Request was successful");
-//                    if (list.size() > 0) {
-//                        hasResults = true;
-//                    }
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    Log.e(TAG, "Search artists request failed", error);
-                }
-            });
-
-            return hasResults;
+        protected void onPreExecute() {
+            super.onPreExecute();
+            hasResults = false;
+            list = new ArrayList<>();
         }
 
         @Override
-        protected void onPostExecute(Boolean success) {
-//            mAuthTask = null;
-//            showProgress(false);
+        protected ArrayList<Artist> doInBackground(String... params) {
 
-            if (success) {
+            if (!params[0].equals("")) {
 
+                spotify.searchArtists(params[0], new Callback<ArtistsPager>() {
+                    @Override
+                    public void success(ArtistsPager artistsPager, Response response) {
+                        for (int i = 0; i < artistsPager.artists.items.size(); i++) {
+                            list.add(artistsPager.artists.items.get(i));
+                            Log.v(TAG, "ARTIST:" + artistsPager.artists.items.get(i).name);
+                        }
+                        mSearchAdapter = new SearchAdapter(SearchActivity.this, list);
+                        searchResults.setAdapter(mSearchAdapter);
+                        Log.v(TAG, "Request was successful");
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.e(TAG, "Search artists request failed", error);
+                    }
+                });
+
+                return list;
+
+            } else {
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(final ArrayList<Artist> artists) {
+            if (artists == null) {
+                mSearchAdapter = new SearchAdapter(SearchActivity.this, new ArrayList<Artist>());
+                searchResults.setAdapter(mSearchAdapter);
+                Log.v(TAG, "Searched for nothing, no artists in response.");
             }
         }
 
         @Override
         protected void onCancelled() {
-//            mAuthTask = null;
-//            showProgress(false);
         }
     }
 }

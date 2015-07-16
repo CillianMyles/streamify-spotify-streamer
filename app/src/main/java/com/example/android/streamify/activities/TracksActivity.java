@@ -1,9 +1,11 @@
-package com.example.android.streamify;
+package com.example.android.streamify.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.android.streamify.R;
 
 
 public class TracksActivity extends AppCompatActivity {

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
+import java.util.List;
 
 import kaaes.spotify.webapi.android.models.Artist;
 
@@ -30,7 +30,7 @@ public class SearchAdapter extends ArrayAdapter<Artist> {
 
     private ImageView artistImage;
 
-    public SearchAdapter(Context context, ArrayList<Artist> artists) {
+    public SearchAdapter(Context context, List<Artist> artists) {
         super(context, R.layout.activity_search_artist_list_view, artists);
     }
 

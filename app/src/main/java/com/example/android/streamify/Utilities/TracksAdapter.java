@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import kaaes.spotify.webapi.android.models.Track;
 
+
 public class TracksAdapter extends ArrayAdapter<Track> {
 
     private static final String TAG = TracksAdapter.class.getSimpleName();
