@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.example.android.streamify.R;
 import com.example.android.streamify.StreamifyApplication;
 import com.example.android.streamify.tasks.TracksTask;
+import com.example.android.streamify.utilities.Constants;
 import com.example.android.streamify.utilities.TracksAdapter;
 
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ public class TracksActivity extends AppCompatActivity {
         getIntentExtras();
         initialiseUI();
         setUpSpotify();
-        poulateTracksList();
+        populateTracksList();
     }
 
     private void getIntentExtras() {
         Intent intent = TracksActivity.this.getIntent();
-        if (intent.hasExtra(Intent.EXTRA_TEXT)) {
-            mArtistId = intent.getExtras().getString(Intent.EXTRA_TEXT);
+        if (intent.hasExtra(Constants.ARTIST_ID_TAG)) {
+            mArtistId = intent.getExtras().getString(Constants.ARTIST_ID_TAG);
         }
     }
 
@@ -55,7 +56,7 @@ public class TracksActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Track track = mTracksAdapter.getItem(position);
                 Intent intent = new Intent(TracksActivity.this, PlayerActivity.class);
-                intent.putExtra(Intent.EXTRA_TEXT, track.id);
+                intent.putExtra(Constants.TRACK_ID_TAG, track.id);
                 startActivity(intent);
             }
         });
@@ -65,7 +66,7 @@ public class TracksActivity extends AppCompatActivity {
         mSpotify = StreamifyApplication.getSpotifyService();
     }
 
-    private void poulateTracksList() {
+    private void populateTracksList() {
         TracksTask tracks = new TracksTask(mSpotify, mTracksAdapter);
         tracks.execute(mArtistId);
     }

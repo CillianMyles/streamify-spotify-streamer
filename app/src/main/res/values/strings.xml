@@ -8,9 +8,6 @@
     <string name="action_search">Search</string>
     <string name="search_et_artist_name_hint">Artist\'s name…</string>
     <string name="title_activity_tracks">Top Tracks</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_player">PlayerActivity</string>
+    <string name="title_activity_player">Listen</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.streamify.R;
+import com.example.android.streamify.utilities.Constants;
 
 public class PlayerActivity extends AppCompatActivity {
 
@@ -17,6 +18,29 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
+
+        getIntentExtras();
+        initialiseUI();
+        setUpSpotify();
+        populateTrackUI();
+    }
+
+    private void getIntentExtras() {
+        if (getIntent().hasExtra(Constants.TRACK_ID_TAG)) {
+            mTrackId = getIntent().getExtras().getString(Constants.TRACK_ID_TAG);
+        }
+    }
+
+    private void initialiseUI() {
+
+    }
+
+    private void setUpSpotify() {
+
+    }
+
+    private void populateTrackUI() {
+
     }
 
     @Override

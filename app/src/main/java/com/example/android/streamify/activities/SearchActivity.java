@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.android.streamify.R;
 import com.example.android.streamify.StreamifyApplication;
 import com.example.android.streamify.tasks.SearchTask;
+import com.example.android.streamify.utilities.Constants;
 import com.example.android.streamify.utilities.SearchAdapter;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Artist artist = mSearchAdapter.getItem(position);
                 Intent intent = new Intent(SearchActivity.this, TracksActivity.class);
-                intent.putExtra(Intent.EXTRA_TEXT, artist.id);
+                intent.putExtra(Constants.ARTIST_ID_TAG, artist.id);
                 startActivity(intent);
             }
         });
