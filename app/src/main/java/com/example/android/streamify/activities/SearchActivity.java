@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.example.android.streamify.R;
 import com.example.android.streamify.StreamifyApplication;
-import com.example.android.streamify.Utilities.SearchAdapter;
+import com.example.android.streamify.utilities.SearchAdapter;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,6 @@ import kaaes.spotify.webapi.android.models.ArtistsPager;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
 
 public class SearchActivity extends AppCompatActivity {
 

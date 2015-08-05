@@ -1,4 +1,4 @@
-package com.example.android.streamify.Utilities;
+package com.example.android.streamify.utilities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import kaaes.spotify.webapi.android.models.Artist;
-
 
 public class SearchAdapter extends ArrayAdapter<Artist> {
 

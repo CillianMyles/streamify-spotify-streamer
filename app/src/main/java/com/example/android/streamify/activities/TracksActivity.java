@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.android.streamify.R;
 import com.example.android.streamify.StreamifyApplication;
-import com.example.android.streamify.Utilities.TracksAdapter;
+import com.example.android.streamify.utilities.TracksAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-
 public class TracksActivity extends AppCompatActivity {
 
     private static final String TAG = TracksActivity.class.getSimpleName();
@@ -36,7 +35,6 @@ public class TracksActivity extends AppCompatActivity {
     private TracksAdapter mTracksAdapter;
 
     private SpotifyService spotify;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

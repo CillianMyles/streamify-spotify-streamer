@@ -6,7 +6,6 @@ import android.content.Context;
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 
-
 public class StreamifyApplication extends Application {
 
     private static StreamifyApplication instance;
