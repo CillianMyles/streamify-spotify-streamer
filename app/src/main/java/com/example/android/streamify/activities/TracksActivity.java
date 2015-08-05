@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.streamify.R;
@@ -48,6 +50,15 @@ public class TracksActivity extends AppCompatActivity {
         mTopTracks = (ListView) findViewById(R.id.tracks_list);
         mTracksAdapter = new TracksAdapter(TracksActivity.this, new ArrayList<Track>());
         mTopTracks.setAdapter(mTracksAdapter);
+        mTopTracks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Track track = mTracksAdapter.getItem(position);
+                Intent intent = new Intent(TracksActivity.this, PlayerActivity.class);
+                intent.putExtra(Intent.EXTRA_TEXT, track.id);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setUpSpotify() {
