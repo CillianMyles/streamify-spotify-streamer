@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.streamify" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.android.streamify">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -8,12 +9,14 @@
     <application
         android:name=".StreamifyApplication"
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".search.SearchActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +26,7 @@
         <activity
             android:name=".tracks.TracksActivity"
             android:label="@string/title_activity_tracks"
-            android:parentActivityName=".search.SearchActivity" >
+            android:parentActivityName=".search.SearchActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".search.SearchActivity" />
@@ -31,7 +34,7 @@
         <activity
             android:name=".player.PlayerActivity"
             android:label="@string/title_activity_player"
-            android:parentActivityName=".tracks.TracksActivity" >
+            android:parentActivityName=".tracks.TracksActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".tracks.TracksActivity" />

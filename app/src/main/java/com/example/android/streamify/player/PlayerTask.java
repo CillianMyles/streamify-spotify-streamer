@@ -11,7 +11,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.android.streamify.StreamifyApplication;
-import com.example.android.streamify.tracks.TracksTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -27,10 +26,8 @@ import retrofit.client.Response;
  */
 public class PlayerTask extends AsyncTask<String, Void, String> {
 
-    private final String TAG = TracksTask.class.getSimpleName();
+    private final String TAG = PlayerTask.class.getSimpleName();
 
-    private Track mTrack;
-    private String mPreviewUrl;
     private Boolean mPlaying;
     private MediaPlayer mMediaPlayer;
 
@@ -73,55 +70,62 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
             mSpotify.getTrack(params[0], new Callback<Track>() {
                 @Override
                 public void success(Track track, Response response) {
+                    Log.v(TAG, "Got response about song successfully.");
+
+                    // Update UI.
                     mArtistName.setText(track.artists.get(0).name);
                     mAlbumName.setText(track.album.name);
                     Picasso.with(StreamifyApplication.getContext())
                             .load(track.album.images.get(0).url)
                             .into(mAlbumCover);
                     mSongName.setText(track.name);
-                    mPreviewUrl = track.preview_url;
-                    mTrack = track;
+
+                    // Begin music download.
+                    prepareMediaStreamer(track.preview_url);
+                    Log.v(TAG, "Song preview URL : " + track.preview_url);
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-
+                    Log.e(TAG, "Request failure.", error);
                 }
             });
-
-            return mPreviewUrl;
-
-        } else {
-            return null;
         }
+        return null;
     }
 
     @Override
     protected void onPostExecute(final String previewUrl) {
-        if (previewUrl != null) {
-            initialisePlayPause();
+        initialisePlayPause();
+    }
+
+    private void prepareMediaStreamer(String url) {
+        Log.v(TAG, "Prepping media streamer.");
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            mMediaPlayer.setDataSource(url);
+            mMediaPlayer.prepare();
+        } catch (IOException e) {
+            Log.e(TAG, "Could not stream content.", e);
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, "Incorrect arguments.", e);
         }
     }
 
     private void initialisePlayPause() {
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            mMediaPlayer.setDataSource(mPreviewUrl);
-            mMediaPlayer.prepare();
-        } catch (IOException e) {
-            Log.e(TAG, "Could not stream content", e);
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, "Incorrect arguments", e);
-        }
         mPlayPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!mPlaying) {
-                    mMediaPlayer.start();
+                    Log.v(TAG, "Playing!");
                     mPlaying = true;
+                    mPlayPause.setImageResource(android.R.drawable.ic_media_pause);
+                    mMediaPlayer.start();
                 } else {
-                    mMediaPlayer.pause();
+                    Log.v(TAG, "Pausing!");
                     mPlaying = false;
+                    mPlayPause.setImageResource(android.R.drawable.ic_media_play);
+                    mMediaPlayer.pause();
                 }
             }
         });
