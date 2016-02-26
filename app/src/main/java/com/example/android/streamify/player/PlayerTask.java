@@ -47,6 +47,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
     public PlayerTask(SpotifyService spotifyService, TextView artistName, TextView albumName,
                       ImageView albumCover, TextView songName, SeekBar playTime,
                       ImageButton previous, ImageButton playPause, ImageButton next) {
+
         this.mSpotify = spotifyService;
         this.mArtistName = artistName;
         this.mAlbumName = albumName;
@@ -62,30 +63,6 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         mPlaying = false;
-    }
-
-    private void initialisePlayPause() {
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            mMediaPlayer.setDataSource(mPreviewUrl);
-            mMediaPlayer.prepare();
-        } catch (IOException e) {
-            Log.e(TAG, "Could not stream content", e);
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, "Incorrect arguments", e);
-        }
-        mPlayPause.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (!mPlaying) {
-                    mMediaPlayer.start();
-                    mPlaying = true;
-                } else {
-                    mMediaPlayer.pause();
-                    mPlaying = false;
-                }
-            }
-        });
     }
 
     @Override
@@ -124,5 +101,29 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
         if (previewUrl != null) {
             initialisePlayPause();
         }
+    }
+
+    private void initialisePlayPause() {
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            mMediaPlayer.setDataSource(mPreviewUrl);
+            mMediaPlayer.prepare();
+        } catch (IOException e) {
+            Log.e(TAG, "Could not stream content", e);
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, "Incorrect arguments", e);
+        }
+        mPlayPause.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (!mPlaying) {
+                    mMediaPlayer.start();
+                    mPlaying = true;
+                } else {
+                    mMediaPlayer.pause();
+                    mPlaying = false;
+                }
+            }
+        });
     }
 }
