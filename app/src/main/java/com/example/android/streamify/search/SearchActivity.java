@@ -1,4 +1,4 @@
-package com.example.android.streamify.activities;
+package com.example.android.streamify.search;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,9 +17,8 @@ import android.widget.TextView;
 
 import com.example.android.streamify.R;
 import com.example.android.streamify.StreamifyApplication;
-import com.example.android.streamify.tasks.SearchTask;
+import com.example.android.streamify.tracks.TracksActivity;
 import com.example.android.streamify.utilities.Constants;
-import com.example.android.streamify.utilities.SearchAdapter;
 
 import java.util.ArrayList;
 

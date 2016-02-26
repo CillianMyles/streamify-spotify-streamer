@@ -1,9 +1,7 @@
-package com.example.android.streamify.tasks;
+package com.example.android.streamify.tracks;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.example.android.streamify.utilities.TracksAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

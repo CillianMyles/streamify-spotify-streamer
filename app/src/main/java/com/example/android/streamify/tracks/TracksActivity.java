@@ -1,4 +1,4 @@
-package com.example.android.streamify.activities;
+package com.example.android.streamify.tracks;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,8 @@ import android.widget.ListView;
 
 import com.example.android.streamify.R;
 import com.example.android.streamify.StreamifyApplication;
-import com.example.android.streamify.tasks.TracksTask;
+import com.example.android.streamify.player.PlayerActivity;
 import com.example.android.streamify.utilities.Constants;
-import com.example.android.streamify.utilities.TracksAdapter;
 
 import java.util.ArrayList;
 

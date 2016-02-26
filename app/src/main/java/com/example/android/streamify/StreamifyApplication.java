@@ -18,7 +18,7 @@ public class StreamifyApplication extends Application {
         return instance;
     }
 
-    public static Context getContext(){
+    public static Context getContext() {
         return instance;
     }
 

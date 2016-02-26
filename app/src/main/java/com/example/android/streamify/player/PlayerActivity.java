@@ -1,4 +1,4 @@
-package com.example.android.streamify.activities;
+package com.example.android.streamify.player;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.android.streamify.R;
 import com.example.android.streamify.StreamifyApplication;
-import com.example.android.streamify.tasks.PlayerTask;
 import com.example.android.streamify.utilities.Constants;
 
 import kaaes.spotify.webapi.android.SpotifyService;

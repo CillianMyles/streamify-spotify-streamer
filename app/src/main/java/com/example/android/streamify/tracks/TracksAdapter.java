@@ -1,4 +1,4 @@
-package com.example.android.streamify.utilities;
+package com.example.android.streamify.tracks;
 
 import android.content.Context;
 import android.view.LayoutInflater;

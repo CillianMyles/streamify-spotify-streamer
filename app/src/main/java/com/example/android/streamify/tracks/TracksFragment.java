@@ -1,4 +1,4 @@
-package com.example.android.streamify.fragments;
+package com.example.android.streamify.tracks;
 
 import android.app.Activity;
 import android.net.Uri;

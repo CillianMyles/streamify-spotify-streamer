@@ -1,4 +1,4 @@
-package com.example.android.streamify.tasks;
+package com.example.android.streamify.player;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -11,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.android.streamify.StreamifyApplication;
+import com.example.android.streamify.tracks.TracksTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;

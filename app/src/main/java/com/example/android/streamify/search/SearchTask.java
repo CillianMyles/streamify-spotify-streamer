@@ -1,9 +1,7 @@
-package com.example.android.streamify.tasks;
+package com.example.android.streamify.search;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.example.android.streamify.utilities.SearchAdapter;
 
 import java.util.ArrayList;
 
@@ -79,5 +77,6 @@ public class SearchTask extends AsyncTask<String, Void, ArrayList<Artist>> {
 
     @Override
     protected void onCancelled() {
+
     }
 }
