@@ -3,6 +3,7 @@ package com.example.android.streamify.player;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -114,6 +115,8 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
     }
 
     private void initialisePlayPause() {
+        int previewDuration = 30 * 1000;
+        mPlayTime.setMax(previewDuration);
         mPlayPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!mPlaying) {
@@ -121,6 +124,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
                     mPlaying = true;
                     mPlayPause.setImageResource(android.R.drawable.ic_media_pause);
                     mMediaPlayer.start();
+                    startSeekBarUpdates();
                 } else {
                     Log.v(TAG, "Pausing!");
                     mPlaying = false;
@@ -129,5 +133,32 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
                 }
             }
         });
+    }
+
+    private Handler mHandler = new Handler();
+
+    public void startSeekBarUpdates() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mPlaying) {
+                    try {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Update the UI.
+                                if (mMediaPlayer != null) {
+                                    int mCurrentPosition = mMediaPlayer.getCurrentPosition() / 1000;
+                                    mPlayTime.setProgress(mCurrentPosition);
+                                }
+                                mHandler.postDelayed(this, 1000);
+                            }
+                        });
+                    } catch (Exception e) {
+                        Log.e(TAG, "Error.", e);
+                    }
+                }
+            }
+        }).start();
     }
 }
