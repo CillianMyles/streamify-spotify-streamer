@@ -152,21 +152,24 @@ public class PlayerTask extends AsyncTask<String, Void, String> implements
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+        // TODO - implement me!
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+        // TODO - implement me!
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+        // TODO - implement me!
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
+        Log.v(TAG, "Finished!");
+        mPlaying = false;
+        mPlayPause.setImageResource(android.R.drawable.ic_media_play); // TODO - fix me!?
 
     }
 
