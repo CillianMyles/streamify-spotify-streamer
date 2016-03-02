@@ -135,7 +135,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
         });
     }
 
-    private Handler mHandler = new Handler();
+    private Handler mPlayTimeHandler = new Handler();
 
     public void startSeekBarUpdates() {
         new Thread(new Runnable() {
@@ -143,7 +143,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
             public void run() {
                 while (mPlaying) {
                     try {
-                        mHandler.post(new Runnable() {
+                        mPlayTimeHandler.post(new Runnable() {
                             @Override
                             public void run() {
                                 // Update the UI.
@@ -151,7 +151,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
                                     int mCurrentPosition = mMediaPlayer.getCurrentPosition() / 1000;
                                     mPlayTime.setProgress(mCurrentPosition);
                                 }
-                                mHandler.postDelayed(this, 1000);
+                                mPlayTimeHandler.postDelayed(this, 1000);
                             }
                         });
                     } catch (Exception e) {
