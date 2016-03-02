@@ -25,12 +25,10 @@ import retrofit.client.Response;
 /**
  * Represents an asynchronous task used to get info on a particular track.
  */
-public class PlayerTask extends AsyncTask<String, Void, String> {
+public class PlayerTask extends AsyncTask<String, Void, String> implements
+        MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
     private final String TAG = PlayerTask.class.getSimpleName();
-
-    private Boolean mPlaying;
-    private MediaPlayer mMediaPlayer;
 
     private SpotifyService mSpotify;
     private TextView mArtistName;
@@ -42,6 +40,8 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
     private ImageButton mPlayPause;
     private ImageButton mNext;
 
+    private MediaPlayer mMediaPlayer;
+    private Boolean mPlaying;
     private MediaObserver mMediaObserver;
 
     public PlayerTask(SpotifyService spotifyService, TextView artistName, TextView albumName,
@@ -63,6 +63,9 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         mPlaying = false;
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mPlayTime.setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -104,8 +107,6 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
 
     private void prepareMediaStreamer(String url) {
         Log.v(TAG, "Prepping media streamer.");
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
             mMediaPlayer.setDataSource(url);
             mMediaPlayer.prepare();
@@ -117,8 +118,8 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
     }
 
     private void initialisePlayPause() {
-        int previewDuration = 30 * 1000;
-        mPlayTime.setMax(previewDuration);
+        int defaultDuration = 30 * 1000;
+        mPlayTime.setMax(defaultDuration);
         mPlayPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!mPlaying) {
@@ -147,6 +148,26 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
         mMediaObserver = new MediaObserver();
         mMediaPlayer.start();
         new Thread(mMediaObserver).start();
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+
     }
 
     private class MediaObserver implements Runnable {
