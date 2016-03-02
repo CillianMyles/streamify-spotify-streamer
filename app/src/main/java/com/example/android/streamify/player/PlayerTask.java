@@ -3,7 +3,6 @@ package com.example.android.streamify.player;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,6 +14,7 @@ import com.example.android.streamify.StreamifyApplication;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Track;
@@ -123,8 +123,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
                     Log.v(TAG, "Playing!");
                     mPlaying = true;
                     mPlayPause.setImageResource(android.R.drawable.ic_media_pause);
-                    mMediaPlayer.start();
-//                    startSeekBarUpdates();
+                    play();
                 } else {
                     Log.v(TAG, "Pausing!");
                     mPlaying = false;
@@ -135,30 +134,40 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
         });
     }
 
-    private Handler mPlayTimeHandler = new Handler();
+    private MediaObserver observer = null;
 
-    public void startSeekBarUpdates() {
-        new Thread(new Runnable() {
+    public void play() {
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void run() {
-                while (mPlaying) {
+            public void onCompletion(MediaPlayer player) {
+                observer.stop();
+                mPlayTime.setProgress(player.getCurrentPosition());
+            }
+        });
+        observer = new MediaObserver();
+        mMediaPlayer.start();
+        new Thread(observer).start();
+    }
+
+    private class MediaObserver implements Runnable {
+        private AtomicBoolean stop = new AtomicBoolean(false);
+
+        public void stop() {
+            stop.set(true);
+        }
+
+        @Override
+        public void run() {
+            while (!stop.get()) {
+                if (mMediaPlayer.isPlaying()) {
+                    mPlayTime.setProgress(mMediaPlayer.getCurrentPosition());
                     try {
-                        mPlayTimeHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                // Update the UI.
-                                if (mMediaPlayer != null) {
-                                    int mCurrentPosition = mMediaPlayer.getCurrentPosition() / 1000;
-                                    mPlayTime.setProgress(mCurrentPosition);
-                                }
-                                mPlayTimeHandler.postDelayed(this, 1000);
-                            }
-                        });
-                    } catch (Exception e) {
-                        Log.e(TAG, "Error.", e);
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        Log.e(TAG, "Could not sleep thread for 100 ms.", e);
                     }
                 }
             }
-        }).start();
+        }
     }
 }
