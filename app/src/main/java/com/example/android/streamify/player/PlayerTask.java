@@ -124,7 +124,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
                     mPlaying = true;
                     mPlayPause.setImageResource(android.R.drawable.ic_media_pause);
                     mMediaPlayer.start();
-                    startSeekBarUpdates();
+//                    startSeekBarUpdates();
                 } else {
                     Log.v(TAG, "Pausing!");
                     mPlaying = false;
