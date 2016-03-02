@@ -42,6 +42,8 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
     private ImageButton mPlayPause;
     private ImageButton mNext;
 
+    private MediaObserver mMediaObserver;
+
     public PlayerTask(SpotifyService spotifyService, TextView artistName, TextView albumName,
                       ImageView albumCover, TextView songName, SeekBar playTime,
                       ImageButton previous, ImageButton playPause, ImageButton next) {
@@ -134,19 +136,17 @@ public class PlayerTask extends AsyncTask<String, Void, String> {
         });
     }
 
-    private MediaObserver observer = null;
-
     public void play() {
         mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer player) {
-                observer.stop();
+                mMediaObserver.stop();
                 mPlayTime.setProgress(player.getCurrentPosition());
             }
         });
-        observer = new MediaObserver();
+        mMediaObserver = new MediaObserver();
         mMediaPlayer.start();
-        new Thread(observer).start();
+        new Thread(mMediaObserver).start();
     }
 
     private class MediaObserver implements Runnable {
