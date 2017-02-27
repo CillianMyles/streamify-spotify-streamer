@@ -76,7 +76,7 @@ public class TracksActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            // TODO - make some settings!
+            // To do - make some settings!
             return true;
         }
 

@@ -78,6 +78,7 @@ public class PlayerActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            // To do - make some settings!
             return true;
         }
 
