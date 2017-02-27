@@ -15,6 +15,7 @@ import retrofit.client.Response;
 /**
  * Represents an asynchronous search task used to find artists.
  */
+@SuppressWarnings("WeakerAccess")
 public class SearchTask extends AsyncTask<String, Void, ArrayList<Artist>> {
 
     private final String TAG = SearchTask.class.getSimpleName();

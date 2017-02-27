@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Artist;
 
+@SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
 public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = SearchActivity.class.getSimpleName();
@@ -99,6 +100,7 @@ public class SearchActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            // TODO - make some settings!
             return true;
         }
 
