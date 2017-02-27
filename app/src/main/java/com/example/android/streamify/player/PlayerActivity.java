@@ -39,6 +39,10 @@ public class PlayerActivity extends AppCompatActivity {
         getIntentExtras();
         initialiseUI();
         populatePlayerUI();
+
+        // TODO - abstract player logic into Fragment.
+        // TODO - pass list of track id's into this Activity.
+        // TODO - re-initialise Fragment with next/previous track id next/previous button click.
     }
 
     private void getIntentExtras() {
