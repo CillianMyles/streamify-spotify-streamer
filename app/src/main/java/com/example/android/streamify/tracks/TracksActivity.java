@@ -44,7 +44,7 @@ public class TracksActivity extends AppCompatActivity {
     }
 
     private void initialiseUI() {
-        mTopTracks = (ListView) findViewById(R.id.tracks_list);
+        mTopTracks = (ListView) findViewById(R.id.tracks_list_top_tracks);
         mTracksAdapter = new TracksAdapter(TracksActivity.this, new ArrayList<Track>());
         mTopTracks.setAdapter(mTracksAdapter);
         mTopTracks.setOnItemClickListener(new AdapterView.OnItemClickListener() {

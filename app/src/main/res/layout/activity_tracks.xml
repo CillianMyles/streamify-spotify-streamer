@@ -11,7 +11,7 @@
     tools:context=".tracks.TracksActivity">
 
     <ListView
-        android:id="@+id/tracks_list"
+        android:id="@+id/tracks_list_top_tracks"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 

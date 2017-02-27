@@ -41,9 +41,9 @@ public class TracksAdapter extends ArrayAdapter<Track> {
             trackView = mInflater.inflate(R.layout.activity_tracks_list_view, parent, false);
         }
 
-        mArtistImage = (ImageView) trackView.findViewById(R.id.tracks_img_album_cover);
-        mAlbumName = (TextView) trackView.findViewById(R.id.tracks_artist_info_tv_album_name);
-        mSongName = (TextView) trackView.findViewById(R.id.tracks_artist_info_tv_song_name);
+        mArtistImage = (ImageView) trackView.findViewById(R.id.track_img_album_cover);
+        mAlbumName = (TextView) trackView.findViewById(R.id.track_tv_album_name);
+        mSongName = (TextView) trackView.findViewById(R.id.track_tv_song_name);
 
         Track track = getItem(position);
 

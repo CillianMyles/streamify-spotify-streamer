@@ -23,7 +23,7 @@
         android:maxLines="1"/>
 
     <ListView
-        android:id="@+id/search_list_artist_details"
+        android:id="@+id/search_list_artists"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 

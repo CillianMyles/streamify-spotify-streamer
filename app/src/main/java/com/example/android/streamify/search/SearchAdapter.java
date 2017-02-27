@@ -27,7 +27,7 @@ public class SearchAdapter extends ArrayAdapter<Artist> {
     private TextView mArtistName;
 
     public SearchAdapter(Context context, List<Artist> artists) {
-        super(context, R.layout.activity_search_artist_list_view, artists);
+        super(context, R.layout.activity_search_list_view, artists);
         mInflater = LayoutInflater.from(context);
     }
 
@@ -39,11 +39,11 @@ public class SearchAdapter extends ArrayAdapter<Artist> {
 
         // Only inflate if not re-using convertView (expensive)!
         if (convertView == null) {
-            artistView = mInflater.inflate(R.layout.activity_search_artist_list_view, parent, false);
+            artistView = mInflater.inflate(R.layout.activity_search_list_view, parent, false);
         }
 
-        mArtistImage = (ImageView) artistView.findViewById(R.id.search_artist_list_view_img_artist_pic);
-        mArtistName = (TextView) artistView.findViewById(R.id.search_artist_list_view_tv_artist_name);
+        mArtistImage = (ImageView) artistView.findViewById(R.id.search_img_artist_photo);
+        mArtistName = (TextView) artistView.findViewById(R.id.search_tv_artist_name);
 
         Artist artist = getItem(position);
 

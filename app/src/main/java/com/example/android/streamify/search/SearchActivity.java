@@ -46,7 +46,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initialiseSearchResultsList() {
-        mSearchResults = (ListView) findViewById(R.id.search_list_artist_details);
+        mSearchResults = (ListView) findViewById(R.id.search_list_artists);
         mSearchAdapter = new SearchAdapter(SearchActivity.this, new ArrayList<Artist>());
         mSearchResults.setAdapter(mSearchAdapter);
         mSearchResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
