@@ -3,6 +3,7 @@ package com.example.android.streamify.tracks;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +41,7 @@ public class TracksActivity extends AppCompatActivity {
         Intent intent = TracksActivity.this.getIntent();
         if (intent.hasExtra(Constants.ARTIST_ID_TAG)) {
             mArtistId = intent.getExtras().getString(Constants.ARTIST_ID_TAG);
+            Log.d(TAG, "Artist ID: " + mArtistId);
         }
     }
 

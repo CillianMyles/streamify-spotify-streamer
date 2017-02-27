@@ -1,5 +1,6 @@
 package com.example.android.streamify.player;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,8 +17,6 @@ import com.example.android.streamify.utilities.Constants;
 public class PlayerActivity extends AppCompatActivity {
 
     private static final String TAG = PlayerActivity.class.getSimpleName();
-
-    private static final String TRACK_ID_KEY = "track_id_key";
 
     private String mTrackId;
 
@@ -37,27 +36,16 @@ public class PlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(TRACK_ID_KEY)) {
-            mTrackId = savedInstanceState.getString(TRACK_ID_KEY);
-        }
-
         getIntentExtras();
         initialiseUI();
         populatePlayerUI();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        if (mTrackId != null) {
-            outState.putString(TRACK_ID_KEY, mTrackId);
-        }
-        super.onSaveInstanceState(outState);
-    }
-
     private void getIntentExtras() {
-        if (getIntent().hasExtra(Constants.TRACK_ID_TAG)) {
-            mTrackId = getIntent().getExtras().getString(Constants.TRACK_ID_TAG);
-            Log.e(TAG, "Track ID : " + mTrackId);
+        Intent intent = PlayerActivity.this.getIntent();
+        if (intent.hasExtra(Constants.TRACK_ID_TAG)) {
+            mTrackId = intent.getExtras().getString(Constants.TRACK_ID_TAG);
+            Log.d(TAG, "Track ID: " + mTrackId);
         }
     }
 
