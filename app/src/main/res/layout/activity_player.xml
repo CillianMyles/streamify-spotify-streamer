@@ -1,4 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +17,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center|bottom"
-        android:text="@string/hello_world" />
+        android:text="@string/hello_world"/>
 
     <TextView
         android:id="@+id/player_tv_album_name"
@@ -23,7 +25,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center|top"
-        android:text="@string/hello_world" />
+        android:text="@string/hello_world"/>
 
     <ImageView
         android:id="@+id/player_img_album_cover"
@@ -32,7 +34,7 @@
         android:layout_gravity="center"
         android:layout_weight="10"
         android:padding="16dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
         android:id="@+id/player_tv_song_name"
@@ -41,13 +43,13 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="@string/hello_world" />
+        android:text="@string/hello_world"/>
 
     <SeekBar
         android:id="@+id/player_seek_bar_play_time"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -62,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:src="@android:drawable/ic_media_previous" />
+            android:src="@android:drawable/ic_media_previous"/>
 
         <ImageButton
             android:id="@+id/player_btn_play_pause"
@@ -70,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:src="@android:drawable/ic_media_play" />
+            android:src="@android:drawable/ic_media_play"/>
 
 
         <ImageButton
@@ -79,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:src="@android:drawable/ic_media_next" />
+            android:src="@android:drawable/ic_media_next"/>
 
     </LinearLayout>
 

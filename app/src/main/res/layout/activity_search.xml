@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.streamify.search.SearchActivity">
 
-
     <EditText
         android:id="@+id/search_et_artist_name"
         android:layout_width="fill_parent"
@@ -21,12 +20,11 @@
         android:imeActionLabel="@string/action_search"
         android:imeOptions="actionUnspecified"
         android:inputType="textCapWords"
-        android:maxLines="1"
-        android:singleLine="true" />
+        android:maxLines="1"/>
 
     <ListView
         android:id="@+id/search_list_artist_details"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
