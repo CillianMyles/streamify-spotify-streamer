@@ -30,6 +30,8 @@ public class PlayerTask extends AsyncTask<String, Void, String>
 
     private final String TAG = PlayerTask.class.getSimpleName();
 
+    private final static int THIRTY_SECONDS_MS = 30 * 1000;
+
     private TextView mArtistName;
     private TextView mAlbumName;
     private ImageView mAlbumCover;
@@ -64,6 +66,7 @@ public class PlayerTask extends AsyncTask<String, Void, String>
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mPlayTime.setOnSeekBarChangeListener(this);
+        mMediaPlayer.setOnCompletionListener(this);
     }
 
     @Override
@@ -116,8 +119,7 @@ public class PlayerTask extends AsyncTask<String, Void, String>
     }
 
     private void initialisePlayPause() {
-        int defaultDuration = 30 * 1000;
-        mPlayTime.setMax(defaultDuration);
+        mPlayTime.setMax(THIRTY_SECONDS_MS);
         mPlayPause.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!mPlaying) {
@@ -136,13 +138,6 @@ public class PlayerTask extends AsyncTask<String, Void, String>
     }
 
     public void play() {
-        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer player) {
-                mMediaObserver.stop();
-                mPlayTime.setProgress(player.getCurrentPosition());
-            }
-        });
         mMediaObserver = new MediaObserver();
         mMediaPlayer.start();
         new Thread(mMediaObserver).start();
@@ -150,22 +145,35 @@ public class PlayerTask extends AsyncTask<String, Void, String>
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        // TODO - implement me!
+        // TODO - fix me!?
+        if (fromUser) {
+            // Pause the music stream while scrubbing.
+            mMediaPlayer.pause();
+            // Calculate (in ms) where user scrubbed to.
+            final int maxDuration = mMediaPlayer.getDuration();
+            final float progressAsPercentage = (float) (progress / maxDuration) * 100;
+            final int scrubbedTo = Math.round(maxDuration * progressAsPercentage);
+            mMediaPlayer.seekTo(scrubbedTo);
+            mMediaPlayer.start();
+        }
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO - implement me!
+
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO - implement me!
+
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
         Log.v(TAG, "Finished!");
+        mMediaPlayer.seekTo(0);
+        mMediaObserver.stop();
+        mPlayTime.setProgress(0);
         mPlaying = false;
         mPlayPause.setImageResource(android.R.drawable.ic_media_play); // TODO - fix me!?
     }
