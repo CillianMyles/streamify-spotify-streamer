@@ -177,7 +177,7 @@ public class PlayerTask extends AsyncTask<String, Void, String>
         mMediaObserver.stop();
         mPlayTime.setProgress(0);
         mPlaying = false;
-        mPlayPause.setImageResource(android.R.drawable.ic_media_play); // TODO - fix me!?
+        mPlayPause.setImageResource(android.R.drawable.ic_media_play);
     }
 
     private class MediaObserver implements Runnable {
