@@ -6,15 +6,15 @@ import android.content.Context;
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 
-public class StreamifyApplication extends Application {
+@SuppressWarnings("FieldCanBeLocal")
+public class Streamify extends Application {
 
-    private static StreamifyApplication instance;
+    private static Streamify instance;
 
     private static SpotifyApi spotifyApi;
     private static SpotifyService spotifyService;
 
-
-    public static StreamifyApplication getInstance() {
+    public static Streamify getInstance() {
         return instance;
     }
 
@@ -31,7 +31,6 @@ public class StreamifyApplication extends Application {
         instance = this;
 
         spotifyApi = new SpotifyApi();
-        //spotifyApi.setAccessToken("");
         spotifyService = spotifyApi.getService();
 
         super.onCreate();

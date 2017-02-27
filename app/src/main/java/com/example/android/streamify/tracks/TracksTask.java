@@ -3,11 +3,12 @@ package com.example.android.streamify.tracks;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.android.streamify.Streamify;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Track;
 import kaaes.spotify.webapi.android.models.Tracks;
 import retrofit.Callback;
@@ -23,12 +24,9 @@ public class TracksTask extends AsyncTask<String, Void, ArrayList<Track>> {
     private final String TAG = TracksTask.class.getSimpleName();
 
     private ArrayList<Track> mList;
-
-    private SpotifyService mSpotify;
     private TracksAdapter mTracksAdapter;
 
-    public TracksTask(SpotifyService spotifyService, TracksAdapter tracksAdapter) {
-        this.mSpotify = spotifyService;
+    public TracksTask(TracksAdapter tracksAdapter) {
         this.mTracksAdapter = tracksAdapter;
     }
 
@@ -46,7 +44,7 @@ public class TracksTask extends AsyncTask<String, Void, ArrayList<Track>> {
             Map<String, Object> queryMap = new HashMap<>();
             queryMap.put("country", "IE");
 
-            mSpotify.getArtistTopTrack(params[0], queryMap, new Callback<Tracks>() {
+            Streamify.getSpotifyService().getArtistTopTrack(params[0], queryMap, new Callback<Tracks>() {
                 @Override
                 public void success(Tracks tracks, Response response) {
                     Log.d(TAG, "Response: " + response.getBody());

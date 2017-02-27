@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.streamify.R;
-import com.example.android.streamify.StreamifyApplication;
+import com.example.android.streamify.Streamify;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -48,7 +48,7 @@ public class SearchAdapter extends ArrayAdapter<Artist> {
         Artist artist = getItem(position);
 
         if (artist.images.size() > 0) {
-            Picasso.with(StreamifyApplication.getContext())
+            Picasso.with(Streamify.getContext())
                     .load(artist.images.get(0).url)
                     .into(mArtistImage);
         }

@@ -11,10 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.android.streamify.R;
-import com.example.android.streamify.StreamifyApplication;
 import com.example.android.streamify.utilities.Constants;
-
-import kaaes.spotify.webapi.android.SpotifyService;
 
 public class PlayerActivity extends AppCompatActivity {
 
@@ -33,8 +30,6 @@ public class PlayerActivity extends AppCompatActivity {
     private ImageButton mPlayPause;
     private ImageButton mNext;
 
-    private SpotifyService mSpotify;
-
     private String mPreviewUrl;
 
     @Override
@@ -48,7 +43,6 @@ public class PlayerActivity extends AppCompatActivity {
 
         getIntentExtras();
         initialiseUI();
-        setUpSpotify();
         populatePlayerUI();
     }
 
@@ -78,13 +72,9 @@ public class PlayerActivity extends AppCompatActivity {
         mNext = (ImageButton) findViewById(R.id.player_btn_next);
     }
 
-    private void setUpSpotify() {
-        mSpotify = StreamifyApplication.getSpotifyService();
-    }
-
     private void populatePlayerUI() {
-        PlayerTask task = new PlayerTask(mSpotify, mArtistName, mAlbumName, mAlbumCover, mSongName,
-                mPlayTime, mPrevious, mPlayPause, mNext);
+        PlayerTask task = new PlayerTask(mArtistName, mAlbumName,
+                mAlbumCover, mSongName, mPlayTime, mPrevious, mPlayPause, mNext);
         task.execute(mTrackId);
     }
 

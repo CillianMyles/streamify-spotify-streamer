@@ -10,13 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.streamify.R;
-import com.example.android.streamify.StreamifyApplication;
 import com.example.android.streamify.player.PlayerActivity;
 import com.example.android.streamify.utilities.Constants;
 
 import java.util.ArrayList;
 
-import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Track;
 
 @SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
@@ -27,7 +25,6 @@ public class TracksActivity extends AppCompatActivity {
     private String mArtistId;
     private ListView mTopTracks;
     private TracksAdapter mTracksAdapter;
-    private SpotifyService mSpotify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +33,6 @@ public class TracksActivity extends AppCompatActivity {
 
         getIntentExtras();
         initialiseUI();
-        setUpSpotify();
         populateTracksList();
     }
 
@@ -62,12 +58,8 @@ public class TracksActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpSpotify() {
-        mSpotify = StreamifyApplication.getSpotifyService();
-    }
-
     private void populateTracksList() {
-        TracksTask tracks = new TracksTask(mSpotify, mTracksAdapter);
+        TracksTask tracks = new TracksTask(mTracksAdapter);
         tracks.execute(mArtistId);
     }
 

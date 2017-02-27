@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.streamify.R;
-import com.example.android.streamify.StreamifyApplication;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class TracksAdapter extends ArrayAdapter<Track> {
                 urlToUse = lastChoicePicUrl;
             }
 
-            Picasso.with(StreamifyApplication.getContext())
+            Picasso.with(getContext())
                     .load(urlToUse)
                     .into(mArtistImage);
         }

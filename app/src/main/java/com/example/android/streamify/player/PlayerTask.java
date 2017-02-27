@@ -10,13 +10,12 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.android.streamify.StreamifyApplication;
+import com.example.android.streamify.Streamify;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Track;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -31,7 +30,6 @@ public class PlayerTask extends AsyncTask<String, Void, String>
 
     private final String TAG = PlayerTask.class.getSimpleName();
 
-    private SpotifyService mSpotify;
     private TextView mArtistName;
     private TextView mAlbumName;
     private ImageView mAlbumCover;
@@ -45,11 +43,10 @@ public class PlayerTask extends AsyncTask<String, Void, String>
     private Boolean mPlaying;
     private MediaObserver mMediaObserver;
 
-    public PlayerTask(SpotifyService spotifyService, TextView artistName, TextView albumName,
-                      ImageView albumCover, TextView songName, SeekBar playTime,
-                      ImageButton previous, ImageButton playPause, ImageButton next) {
+    public PlayerTask(TextView artistName, TextView albumName, ImageView albumCover,
+                      TextView songName, SeekBar playTime, ImageButton previous,
+                      ImageButton playPause, ImageButton next) {
 
-        this.mSpotify = spotifyService;
         this.mArtistName = artistName;
         this.mAlbumName = albumName;
         this.mAlbumCover = albumCover;
@@ -74,7 +71,7 @@ public class PlayerTask extends AsyncTask<String, Void, String>
 
         if (!params[0].equals("")) {
 
-            mSpotify.getTrack(params[0], new Callback<Track>() {
+            Streamify.getSpotifyService().getTrack(params[0], new Callback<Track>() {
                 @Override
                 public void success(Track track, Response response) {
                     Log.v(TAG, "Got song info response.");
@@ -82,7 +79,7 @@ public class PlayerTask extends AsyncTask<String, Void, String>
                     // Update UI.
                     mArtistName.setText(track.artists.get(0).name);
                     mAlbumName.setText(track.album.name);
-                    Picasso.with(StreamifyApplication.getContext())
+                    Picasso.with(Streamify.getContext())
                             .load(track.album.images.get(0).url)
                             .into(mAlbumCover);
                     mSongName.setText(track.name);

@@ -3,9 +3,10 @@ package com.example.android.streamify.search;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.android.streamify.Streamify;
+
 import java.util.ArrayList;
 
-import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.ArtistsPager;
 import retrofit.Callback;
@@ -22,11 +23,9 @@ public class SearchTask extends AsyncTask<String, Void, ArrayList<Artist>> {
 
     private ArrayList<Artist> mList;
 
-    private SpotifyService mSpotify;
     private SearchAdapter mSearchAdapter;
 
-    public SearchTask(SpotifyService spotify, SearchAdapter searchAdapter) {
-        this.mSpotify = spotify;
+    public SearchTask(SearchAdapter searchAdapter) {
         this.mSearchAdapter = searchAdapter;
     }
 
@@ -41,7 +40,7 @@ public class SearchTask extends AsyncTask<String, Void, ArrayList<Artist>> {
 
         if (!params[0].equals("")) {
 
-            mSpotify.searchArtists(params[0], new Callback<ArtistsPager>() {
+            Streamify.getSpotifyService().searchArtists(params[0], new Callback<ArtistsPager>() {
                 @Override
                 public void success(ArtistsPager artistsPager, Response response) {
                     Log.d(TAG, "Response: " + response.getBody());

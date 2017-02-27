@@ -16,13 +16,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.streamify.R;
-import com.example.android.streamify.StreamifyApplication;
 import com.example.android.streamify.tracks.TracksActivity;
 import com.example.android.streamify.utilities.Constants;
 
 import java.util.ArrayList;
 
-import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Artist;
 
 @SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
@@ -33,7 +31,6 @@ public class SearchActivity extends AppCompatActivity {
     private EditText mSearchText;
     private ListView mSearchResults;
     private SearchAdapter mSearchAdapter;
-    private SpotifyService mSpotify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +38,6 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         initialiseUI();
-        setUpSpotify();
     }
 
     private void initialiseUI() {
@@ -70,7 +66,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.action_search_ime || id == EditorInfo.IME_NULL) {
-                    SearchTask search = new SearchTask(mSpotify, mSearchAdapter);
+                    SearchTask search = new SearchTask(mSearchAdapter);
                     search.execute(mSearchText.getText().toString());
                     View view = SearchActivity.this.getCurrentFocus();
                     if (view != null) {
@@ -83,10 +79,6 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
-
-    private void setUpSpotify() {
-        mSpotify = StreamifyApplication.getSpotifyService();
     }
 
     @Override
