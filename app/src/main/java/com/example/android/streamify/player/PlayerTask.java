@@ -49,6 +49,7 @@ public class PlayerTask extends AsyncTask<String, Void, String>
                       TextView songName, SeekBar playTime, ImageButton previous,
                       ImageButton playPause, ImageButton next) {
 
+        // TODO - talk about poor design passing ref to views!
         this.mArtistName = artistName;
         this.mAlbumName = albumName;
         this.mAlbumCover = albumCover;
@@ -154,6 +155,7 @@ public class PlayerTask extends AsyncTask<String, Void, String>
             final float progressAsPercentage = (float) (progress / maxDuration) * 100;
             final int scrubbedTo = Math.round(maxDuration * progressAsPercentage);
             mMediaPlayer.seekTo(scrubbedTo);
+            // Resume playing the track.
             mMediaPlayer.start();
         }
     }
