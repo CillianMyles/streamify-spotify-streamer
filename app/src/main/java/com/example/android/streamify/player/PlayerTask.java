@@ -25,8 +25,9 @@ import retrofit.client.Response;
 /**
  * Represents an asynchronous task used to get info on a particular track.
  */
-public class PlayerTask extends AsyncTask<String, Void, String> implements
-        MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
+@SuppressWarnings("WeakerAccess")
+public class PlayerTask extends AsyncTask<String, Void, String>
+        implements MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
     private final String TAG = PlayerTask.class.getSimpleName();
 
@@ -76,7 +77,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> implements
             mSpotify.getTrack(params[0], new Callback<Track>() {
                 @Override
                 public void success(Track track, Response response) {
-                    Log.v(TAG, "Got response about song successfully.");
+                    Log.v(TAG, "Got song info response.");
 
                     // Update UI.
                     mArtistName.setText(track.artists.get(0).name);
@@ -88,7 +89,7 @@ public class PlayerTask extends AsyncTask<String, Void, String> implements
 
                     // Begin music download.
                     prepareMediaStreamer(track.preview_url);
-                    Log.v(TAG, "Song preview URL : " + track.preview_url);
+                    Log.v(TAG, "Song preview URL: " + track.preview_url);
                 }
 
                 @Override
@@ -170,10 +171,10 @@ public class PlayerTask extends AsyncTask<String, Void, String> implements
         Log.v(TAG, "Finished!");
         mPlaying = false;
         mPlayPause.setImageResource(android.R.drawable.ic_media_play); // TODO - fix me!?
-
     }
 
     private class MediaObserver implements Runnable {
+
         private AtomicBoolean stop = new AtomicBoolean(false);
 
         public void stop() {

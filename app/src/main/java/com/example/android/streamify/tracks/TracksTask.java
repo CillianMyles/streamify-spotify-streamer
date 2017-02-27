@@ -17,6 +17,7 @@ import retrofit.client.Response;
 /**
  * Represents an asynchronous search task used to find artists.
  */
+@SuppressWarnings("WeakerAccess")
 public class TracksTask extends AsyncTask<String, Void, ArrayList<Track>> {
 
     private final String TAG = TracksTask.class.getSimpleName();
@@ -48,10 +49,10 @@ public class TracksTask extends AsyncTask<String, Void, ArrayList<Track>> {
             mSpotify.getArtistTopTrack(params[0], queryMap, new Callback<Tracks>() {
                 @Override
                 public void success(Tracks tracks, Response response) {
-                    Log.d(TAG, "Response : " + response.getBody());
+                    Log.d(TAG, "Response: " + response.getBody());
                     for (int i = 0; i < tracks.tracks.size(); i++) {
                         mList.add(tracks.tracks.get(i));
-                        Log.v(TAG, "TRACK:" + tracks.tracks.get(i).name);
+                        Log.v(TAG, "TRACK: " + tracks.tracks.get(i).name);
                     }
                     mTracksAdapter.clear();
                     mTracksAdapter.addAll(mList);

@@ -1,6 +1,7 @@
 package com.example.android.streamify.tracks;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,26 +17,34 @@ import java.util.ArrayList;
 
 import kaaes.spotify.webapi.android.models.Track;
 
+@SuppressWarnings({"WeakerAccess", "ConstantConditions", "FieldCanBeLocal"})
 public class TracksAdapter extends ArrayAdapter<Track> {
 
     private static final String TAG = TracksAdapter.class.getSimpleName();
 
+    private LayoutInflater mInflater;
+    private ImageView mArtistImage;
+    private TextView mAlbumName;
+    private TextView mSongName;
+
     public TracksAdapter(Context context, ArrayList<Track> tracks) {
         super(context, R.layout.activity_tracks_list_view, tracks);
+        mInflater = LayoutInflater.from(context);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View trackView = inflater.inflate(R.layout.activity_tracks_list_view,
-                parent, false);
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
-        ImageView artistImage = (ImageView) trackView
-                .findViewById(R.id.tracks_img_album_cover);
-        TextView albumName = (TextView) trackView
-                .findViewById(R.id.tracks_artist_info_tv_album_name);
-        TextView songName = (TextView) trackView
-                .findViewById(R.id.tracks_artist_info_tv_song_name);
+        View trackView = convertView;
+
+        if (convertView == null) {
+            trackView = mInflater.inflate(R.layout.activity_tracks_list_view, parent, false);
+        }
+
+        mArtistImage = (ImageView) trackView.findViewById(R.id.tracks_img_album_cover);
+        mAlbumName = (TextView) trackView.findViewById(R.id.tracks_artist_info_tv_album_name);
+        mSongName = (TextView) trackView.findViewById(R.id.tracks_artist_info_tv_song_name);
 
         Track track = getItem(position);
 
@@ -70,11 +79,11 @@ public class TracksAdapter extends ArrayAdapter<Track> {
 
             Picasso.with(StreamifyApplication.getContext())
                     .load(urlToUse)
-                    .into(artistImage);
+                    .into(mArtistImage);
         }
 
-        albumName.setText(track.album.name);
-        songName.setText(track.name);
+        mAlbumName.setText(track.album.name);
+        mSongName.setText(track.name);
 
         return trackView;
     }

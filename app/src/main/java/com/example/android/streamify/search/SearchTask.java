@@ -44,10 +44,10 @@ public class SearchTask extends AsyncTask<String, Void, ArrayList<Artist>> {
             mSpotify.searchArtists(params[0], new Callback<ArtistsPager>() {
                 @Override
                 public void success(ArtistsPager artistsPager, Response response) {
-                    Log.d(TAG, "Response : " + response.getBody());
+                    Log.d(TAG, "Response: " + response.getBody());
                     for (int i = 0; i < artistsPager.artists.items.size(); i++) {
                         mList.add(artistsPager.artists.items.get(i));
-                        Log.v(TAG, "ARTIST:" + artistsPager.artists.items.get(i).name);
+                        Log.v(TAG, "ARTIST: " + artistsPager.artists.items.get(i).name);
                     }
                     mSearchAdapter.clear();
                     mSearchAdapter.addAll(mList);

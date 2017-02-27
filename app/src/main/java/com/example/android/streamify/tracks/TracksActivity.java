@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Track;
 
+@SuppressWarnings({"FieldCanBeLocal", "ConstantConditions"})
 public class TracksActivity extends AppCompatActivity {
 
     private static final String TAG = TracksActivity.class.getSimpleName();
@@ -81,6 +82,7 @@ public class TracksActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            // TODO - make some settings!
             return true;
         }
 
