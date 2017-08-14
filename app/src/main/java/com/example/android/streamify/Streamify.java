@@ -31,6 +31,7 @@ public class Streamify extends Application {
         instance = this;
 
         spotifyApi = new SpotifyApi();
+        spotifyApi.setAccessToken("XYZ"); // TODO - actually use correct access key!?
         spotifyService = spotifyApi.getService();
 
         super.onCreate();
